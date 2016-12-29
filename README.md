@@ -1,35 +1,18 @@
-## Chatty: The Rails 5 + Action Cable Example App
+## Delfos call site logging example
 
-This is a really simple chatting app to demonstrate one implementation of
-Action Cable in a Rails 5 app. Users can sign up/log in with a username and
-create a chatroom or choose from an existing one to start real-time messaging.
+See it in action here:
 
-For a walk-through of this application, and to learn more about Action Cable
-(it's awesome, btw), you can check out [my article on the Heroku
-blog](https://blog.heroku.com/archives/2016/5/9/real_time_rails_implementing_websockets_in_rails_5_with_action_cable).
-You can view my deployment of this application
-[here](https://action-cable-example.herokuapp.com), or you can use the button
-below to deploy your own version (you'll need a Heroku account for that).
+![custom-call-site-logger][examples/custom-call-site-logger.gif]
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+This app is adapted from https://github.com/SophieDeBenedetto/action-cable-example
 
-To view an implementation of this project that uses multipe subscriptions to
-multiple chatrooms, check out this
-[repo](https://github.com/SophieDeBenedetto/rails-5-action-cable-meetup)
+See Sophie's blog post for details of Action Cable:
+https://blog.heroku.com/archives/2016/5/9/real_time_rails_implementing_websockets_in_rails_5_with_action_cable
 
-### Running Locally
 
-You'll need:
+This example uses [Delfos](github.com/markburns/delfos) for call site logging and Rails 5's action cable for pushing live updates of call sites to 
+another browser.
 
-* Ruby 2.3.0
-* Postgres
-* Redis
-
-Then, once you clone down this repo:
-
-* `bundle install`
-* `rake db:create; rake db:migrate`
-
-And you're all set.
-
+For this to work from the terminal too (or any other Rails instance) you need to follow the instructions
+for getting started with redis.
 
