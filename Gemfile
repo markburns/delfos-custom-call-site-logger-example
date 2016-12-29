@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem "delfos", path: "../../"
+gem "delfos", "0.0.1"
+gem "sucker_punch"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

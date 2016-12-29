@@ -4,18 +4,26 @@ class DelfosWebsocketLogger
   end
 
   def log(parameters, call_site, called_code)
-    call_site = CallSiteFormatter.new(call_site)
+    call_site   = CallSiteFormatter.new(call_site)
     called_code = CallSiteFormatter.new(called_code)
 
-    ActionCable.server.broadcast 'source_code',
+    broadcast call_site,   parameters
+    broadcast called_code, parameters
+  end
+
+  def broadcast(call_site, parameters)
+    arguments = parameters.args.map(&:inspect)
+    keyword_arguments = parameters.keyword_args.map(&:inspect)
+
+    BroadCastSourcecodeJob.perform_later(
       location:      call_site.location,
       method:        call_site.method,
       beforeCode:    call_site.before_code,
       line:          call_site.line,
       afterCode:     call_site.after_code,
-      calledMethod:  called_code.method_name,
       fileSyntax:    call_site.file_syntax,
-      parameters:    parameters
+      parameters:    {arguments: arguments, keyword_arguments: keyword_arguments}
+    )
   end
 
   CallSiteFormatter = Struct.new(:call_site) do
